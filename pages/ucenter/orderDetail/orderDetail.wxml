@@ -1,0 +1,107 @@
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class="container" style='margin-top: {{height}}px'>
+  <view class="order-goods">
+    <view style="background:#fff;">
+        <!-- <view class="h">
+          <view class="label">商品信息</view>
+          <view class="status">{{orderInfo.orderStatusText}}
+          </view>
+        </view> -->
+      <view class="goods">
+        <view class="item" wx:for="{{orderGoods}}" wx:key="id">
+          <view class="img">
+            <image src="{{item.picUrl}}"></image>
+          </view>
+          <view class="info">
+            <view class="flex">
+               <view style="flex:1;margin-right: 10rpx;">
+                  <view class="t">
+                    <text class="name">{{item.goodsName}}</text>              
+                  </view>
+                  <view class="attr flex">
+                    <text class="lable"  wx:for="{{item.specifications}}" wx:key="index" wx:for-item="list">{{list}}</text>
+                  </view>
+               </view>
+            </view>
+            <view class="priceNum">
+              <view class="price fontMainColor fontMainWeight">￥{{item.price}}</view>
+              <text class="number" style="color:#495060">x{{item.number}}</text>
+            </view>
+            
+          </view>
+        </view>
+        <view class="shopPrice">
+          <view class="shopTotal">
+            <view class="shopTotal_Title">商品金额</view>
+            <view class="shopTotal_right">合计: {{orderInfo.goodsPrice}} (含运费)</view>
+          </view>
+          <view class="btn active" wx:if="{{handleOption.comment && (item.comment == 0)}}">
+            <navigator url="../../commentPost/commentPost?orderId={{item.orderId}}&&valueId={{item.goodsId}}&type=0">去评价</navigator>
+          </view>
+          <view class="btn active" wx:if="{{handleOption.rebuy}}">
+            <navigator url="../../goods/goods?id={{item.goodsId}}">再次购买</navigator>
+          </view>
+        </view>
+      </view>
+    </view>
+   
+    <view class="address">
+        <view class="t">
+          <image class="icon" src="/static/images/address.png"></image>
+          <text class="name">{{orderInfo.consignee}}</text>        
+          <text class="mobile">{{orderInfo.mobile}}</text>
+        </view>
+        <view class="b">{{orderInfo.address}}</view>
+      </view>
+
+      <view class="cardInfo" wx:if="{{ orderInfo.isResult == '0' }}">
+        <view>姓名:  <text style="color:#999;">{{orderInfo.carName}}</text></view>
+        <view>证件号码:  <text style="color:#999;">{{orderInfo.carNumber}}</text></view>
+    </view>
+    <view class="order-bottom">
+      
+      <text></text>
+      <view class="order-info">
+        <view class="item-a"><text>订单时间：</text><text style="color:#999">{{orderInfo.addTime}}</text></view>
+        <view class="item-a"><text>订单编号：</text><text style="color:#999">{{orderInfo.orderSn}}</text></view>
+        <view class="item-a"><text>订单留言：</text><text style="color:#999">{{orderInfo.message}}</text></view> 
+        <view class="item-a"><text>实付款：</text><text class="fontMainColor">￥{{orderInfo.goodsPrice}}</text></view>       
+      </view>
+      <!-- <view class="pay-fee">
+        <text class="label">实付：</text>
+        <text class="txt">￥{{orderInfo.actualPrice}}</text>
+      </view> -->
+      <view class="item-c">
+        <!-- <view class="l">实付：
+          <text class="cost">￥{{orderInfo.actualPrice}}</text>
+        </view> -->
+        <view class="r">
+          <view class="btn active" bindtap="cancelOrder" wx:if="{{handleOption.cancel}}">取消订单</view>
+          <view class="btn active" bindtap="payOrderToc" data-item="{{orderInfo}}" wx:if="{{handleOption.pay  && userType == '0'}}">去付款</view>
+          <view class="btn active" bindtap="payOrder" data-item="{{item}}" wx:if="{{handleOption.pay && userType !== '0'}}">上传凭证</view>
+          <!-- <view class="btn active" bindtap="logistics" wx:if="{{handleOption.confirm}}">查看物流</view> -->
+          <view class="btn active" bindtap="confirmOrder" wx:if="{{handleOption.confirm}}">确认收货</view>
+          <view class="btn active" bindtap="deleteOrder" wx:if="{{handleOption.delete}}">删除订单</view>
+          <view class="btn active" bindtap="refundOrder" wx:if="{{handleOption.refund}}">申请退款</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 物流信息,仅收货状态下可见 -->
+  <view class="order-express" bindtap="expandDetail" wx:if="{{ handleOption.confirm||handleOption.comment }}">
+    <view class="order-express">
+      <view class="title">
+        <view class="t">快递公司：{{orderInfo.shipChannel}}</view>
+        <view class="b">物流单号：{{orderInfo.shipSn}}</view>
+      </view>
+      <!-- <image class="ti" src="/static/images/address_right.png" background-size="cover"></image> -->
+    </view>
+    <view class="traces" wx:for="{{expressInfo.Traces}}" wx:key="item" wx:for-item="iitem" wx:if="{{ flag }}">
+      <view class="trace">
+        <view class="acceptStation">{{iitem.AcceptStation}}</view>
+        <view class="acceptTime">{{iitem.AcceptTime}}</view>
+      </view>
+    </view>
+  </view>
+</view>

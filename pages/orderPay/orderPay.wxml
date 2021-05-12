@@ -1,0 +1,66 @@
+<!--pages/orderPay/orderPay.wxml-->
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class="page_box" style='margin-top: {{height}}px'>
+  <view class="warnContent">请在<text style="color: #D85F3D;font-size: 24rpx;"> 24小时内</text>完成付款，否则系统自动取消订单</view>
+  <view class="order_related">
+    <view class="item_box border_bottom01">
+      <text>订单编号</text>
+      <text style="color: #666">{{orderSn}}</text>
+    </view>
+    <view class="item_box">
+      <text>实付金额</text>
+      <text class="ItemPrice">¥{{price}}</text>
+    </view>
+  </view>
+  <view class="pay_type border_bottom">
+    <view class="pay_type_title">选择支付方式</view>
+    <view class="pay_type_item" bindtap='bindPayType'>
+        
+      <!-- <image class="img" wx:if="{{payType == 1}}" src="/static/images/icon_select.png" bindtap="bindIsDefault"></image>
+      <image class="img" wx:else src="/static/images/icon_select_none.png"  bindtap="bindIsDefault" ></image>  -->
+      <!-- <radio-group class="radio-group" bindchange="radioChange">
+          <radio class="radio" color="#E71F19" value="" checked="true">
+              <text class="circle"></text>
+          </radio>
+      </radio-group> -->
+      <view class="circle">
+        <text class="circleIn"></text>
+      </view>
+      <image class="img" src='/static/images/firma.png' style="margin: 0 20rpx;"></image>        
+        <view class="f24">对公支付</view>
+    </view>
+  </view>
+  <view class="accountInfo border_bottom">
+    <view class="info_title border_bottom01">
+      1.打款至邮政网指定账户
+    </view>
+    <view class="info_item">
+      <text class="mr30">开户名称</text>
+      <text>{{accountInfo.accountName}}</text>
+    </view>
+    <view class="info_item">
+      <text class="mr30">开户银行</text>
+      <text>{{accountInfo.bankName}}{{accountInfo.bankAddress}}</text>
+    </view>
+    <view class="info_item">
+      <text class="mr30">汇款账户</text>
+      <text>{{accountInfo.accountNo}}</text>
+    </view>
+    <view class="info_item">
+      <text class="mr30">汇款金额</text>
+      <text>{{price}}元</text>
+    </view>
+  </view>
+
+  <view class="accountInfo border">
+    <view class="info_title border_bottom01">
+      2.汇款核实
+    </view>
+    <view style="font-size: 24rpx;padding: 20rpx 0;line-height: 32rpx;">提交汇款信息后，您可以在个人中心-我的订单中查看汇款处理进度，若有疑问请拨打热线400-888-8888</view>
+  </view>
+  <view class="point">
+    <text class="pointIn" style="width:32rpx;height:32rpx;border:2rpx solid #ED3F14; color: #ED3F14;border-radius:50%">!</text>
+    <text class="fontMainColor pl20 pointDown" >请谨慎填写汇款信息，提交后不可修改</text>
+  </view>
+  <view class="btn" bindtap="goUpdataAccount">上传凭证</view>
+</view>

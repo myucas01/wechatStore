@@ -1,0 +1,38 @@
+/* pages/ucenter/setting/index.wxss */
+page{
+  height: 100%
+}
+.container {
+  height: 100%;
+  position: relative;
+  padding-top: 20rpx 
+}
+.mimaBox {
+  height: 100rpx;
+  background: #fff;
+  display: flex;
+  flex-direction: row;
+  padding: 0 20rpx;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+  align-items: center;
+}
+.user_coreBox_item_image{
+  width:30rpx;
+  height:30rpx;
+  margin-right: 10rpx;
+}
+.logout {
+  /* margin: 30rpx auto; */
+  height: 100rpx;
+  width: 694rpx;
+  line-height: 100rpx;
+  text-align: center;
+  background:rgba(237,63,20,1);
+  position: absolute;
+  bottom: 30rpx;
+  left:3.6%;
+  border-radius:4px;
+  color: #fff;
+  font-size: 30rpx;
+}

@@ -1,0 +1,89 @@
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class="container" style='margin-top: {{height}}px'>
+  <view class="orders-switch">
+    <view class="item {{ showType == 0 ? 'active' : ''}}" bindtap="switchTab" data-index='0'>
+      <view class="txt">全部</view>
+    </view>
+    <view class="item {{ showType == 1 ? 'active' : ''}}" bindtap="switchTab" data-index='1'>
+      <view class="txt">待付款</view>
+    </view>
+    <view class="item {{ showType == 2 ? 'active' : ''}}" bindtap="switchTab" data-index='2'>
+      <view class="txt">待发货</view>
+    </view>
+    <view class="item {{ showType == 3 ? 'active' : ''}}" bindtap="switchTab" data-index='3'>
+      <view class="txt">待收货</view>
+    </view>
+    <view class="item {{ showType == 4 ? 'active' : ''}}" bindtap="switchTab" data-index='4'>
+      <view class="txt">已完成</view>
+    </view>
+  </view>
+  <!-- <view class="no-order" wx:if="{{orderList.length <= 0}}">
+    <view class="c">
+      <image src="http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/noCart-a8fe3f12e5.png" />
+      <text>还没有任何订单呢</text>
+    </view>
+  </view> -->
+
+  <view class="orders">
+    <view  wx:for="{{orderList}}" wx:key="id">
+       <!-- <navigator url="../orderDetail/orderDetail?id={{item.id}}" class="order" open-type="redirect"> -->
+       <navigator url="../orderDetail/orderDetail?id={{item.id}}" class="order">
+      <view class="h">
+        <view class="l">订单编号：{{item.orderSn}}</view>
+        <view class="r">{{item.orderStatusText}}</view>
+      </view>
+      <view class="goods" wx:for="{{item.goodsList}}" wx:key="id" wx:for-item="gitem">
+        <view class="img">
+          <image src="{{gitem.picUrl}}"></image>
+        </view>
+        <view class="info">
+          <text class="name">{{gitem.goodsName}}</text>
+          <view class="mt10 flex">
+            <text class="lable"  wx:for="{{gitem.specifications}}" wx:key="index" wx:for-item="list">{{list}}</text>
+          </view>
+          <text class="fontMainColor mt10 fontMainWeight" style="font-size: 28rpx;">￥{{gitem.price}}</text>
+        </view>
+        <view class="status">x {{gitem.number}}</view>
+      </view>
+      
+      <view class="b">
+        <view class="r">合计：<text style="color:#495060">￥{{item.actualPrice}}  (含运费)</text></view>
+      </view>
+      <!-- <view class="ordersDown">
+        <view class="btn btnC">取消订单</view>
+        <view class="btn btnU">上传凭证</view>
+      </view> -->
+    </navigator>
+    <view class="item-c">
+        <!-- <view class="l">合计：
+          <text class="cost">￥{{item.actualPrice}}</text>
+        </view> -->
+        <view class="r">
+          <view class="btn" bindtap="cancelOrder" data-id="{{item.id}}" wx:if="{{item.handleOption.cancel}}">取消订单</view>
+          <!-- <view class="btn active" bindtap="payOrderC" data-item="{{item}}">去付款</view> -->
+          <view class="btn active" bindtap="payOrderToc" data-item="{{item}}" wx:if="{{item.handleOption.pay && userType == '0'}}">去付款</view>
+          <view class="btn active" bindtap="payOrder" data-item="{{item}}" wx:if="{{item.handleOption.pay && userType !== '0'}}">上传凭证</view>
+          <view class="btn" bindtap="logistics" data-item="{{item}}" wx:if="{{item.handleOption.confirm}}">查看物流</view>
+          <view class="btn active" bindtap="confirmOrder" data-id="{{item.id}}" wx:if="{{item.handleOption.confirm}}">确认收货</view>
+          <view class="btn active" bindtap="deleteOrder" data-id="{{item.id}}" wx:if="{{item.handleOption.delete}}">删除订单</view>
+          <view class="btn active" bindtap="refundOrder" data-id="{{item.id}}" wx:if="{{item.handleOption.refund}}">申请退款</view>
+        </view>
+       </view>
+    </view>
+   
+  </view>
+
+  <view class="logisticsBox" wx:if="{{logisticsIsshow}}" bindtap="logisticsClose">
+    <view class="infoBox"> 
+      <view class="item" style="border-bottom: 1px solid #f4f4f4;">
+        <text style="font-weight:600">快递公司</text>
+        <text style="color:#80848F">{{shipChannel}}</text>
+      </view>
+      <view class="item">
+        <text style="font-weight:600">快递单号</text>
+        <text style="color:#80848F">{{shipSn}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="pageBottom" wx:if="{{pageBottom && orderList.length > 0}}">没有更多了</view>
+</view>

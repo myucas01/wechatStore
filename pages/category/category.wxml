@@ -1,0 +1,26 @@
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class="container"  style='margin-top: {{height}}px'>
+  <view class="cate-nav"  style='margin-top: {{height}}px'>
+    <scroll-view scroll-x="true" class="cate-nav-body" style="width: 750rpx;" scroll-left="{{scrollLeft}}">
+      <view wx:for="{{navList}}" class="item {{ id == item.id ? 'active' : ''}}" wx:key="id" data-id="{{item.id}}" data-index="{{index}}" bindtap="switchCate">
+        <view class="name">{{item.name}}</view>
+      </view>
+    </scroll-view>
+  </view>
+  <scroll-view scroll-y="true" scroll-top="{{scrollTop}}" style="height:{{scrollHeight}};">
+
+    <view class="cate-item">
+      <view class="h">
+        <text class="name">{{currentCategory.name}}</text>
+        <text class="desc">{{currentCategory.desc}}</text>
+      </view>
+      <view class="b">
+        <navigator class="item {{(iindex + 1) % 2 == 0 ? 'item-b' : ''}}" url="/pages/goods/goods?id={{iitem.id}}" wx:for="{{goodsList}}" wx:key="id" wx:for-item="iitem" wx:for-index="iindex">
+          <image class="img" src="{{iitem.picUrl}}" background-size="cover"></image>
+          <text class="name">{{iitem.name}}</text>
+          <text class="price"><!--判断B端C端-->￥{{userType==0?iitem.memberPrice:(userType==1||2?iitem.collectPrice:iitem.memberPrice)}}</text>
+        </navigator>
+      </view>
+    </view>
+  </scroll-view>
+</view>

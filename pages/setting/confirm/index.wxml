@@ -1,0 +1,9 @@
+<!--pages/setting/confirm/index.wxml-->
+<view class="container">
+<view class="center">
+    <image src="/static/images/confirm.png"></image>
+    <text>{{way}}  修改成功!</text>
+</view>
+    
+</view>
+

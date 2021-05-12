@@ -1,0 +1,2 @@
+<!--components/noMore/noMore.wxml-->
+<view class="noMore"> 没有更多了 </view>

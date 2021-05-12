@@ -1,0 +1,91 @@
+/* pages/setting/password/index.wxss */
+page{
+  height: 100%
+}
+.container {
+  height: 100%;
+  padding: 60rpx;
+  background: #fff
+}
+.inputBox {
+  color: #ACACAC;
+  margin: 60rpx 0 40rpx 0;
+  height: 70rpx;
+  border-bottom: 2rpx solid #D6D6D6;
+  line-height: 70rpx;
+}
+.inputBox .b_input,.weui-input {
+  width: 300rpx;
+}
+.auth_code {
+  position: relative
+}
+.warningInfo {
+  /* display: flex !important; */
+  flex-direction: row !important;
+}
+.auth_code_button{
+  position:absolute;
+  right:0;
+  bottom:20rpx; 
+  font-size:28rpx;
+  display: inline-block;
+  line-height: 40rpx;
+  white-space: nowrap;
+}
+.positionS {
+  position: relative!important
+} 
+.groupPosit {
+  position: absolute;
+  top: 0;
+  right: 10rpx
+}
+.codePosit {
+  position: absolute;
+  top: 0;
+  right: 35%
+}
+.oldPwdWor {
+  color: #ED3F14;
+  width: 100%;
+  height: 60rpx;
+  text-align: center;
+  line-height: 60rpx;
+}
+.btnBox {
+  margin:100rpx auto !important;
+}
+.confirmPWDS {
+  height: 100rpx;
+  width: 590rpx;
+  margin-top: 16rpx;
+  line-height: 100rpx;
+  text-align: center;
+  border-radius:50rpx;
+  color: #fff;
+  font-size: 30rpx;
+  background: #ED3F14
+}
+.confirmPWD {
+  height: 100rpx;
+  width: 100%;
+  margin-top: 16rpx;
+  line-height: 100rpx;
+  text-align: center;
+  border-radius:50rpx;
+  color: #fff;
+  font-size: 30rpx;
+  background:#F29C99;
+}
+
+.changeSuccess {
+  text-align: center;
+}
+
+.page-title {
+  font-weight: bold;
+  font-size: 30px;
+  color: rgba(51,51,51,1);
+  margin-top: 100rpx;
+}

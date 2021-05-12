@@ -1,0 +1,68 @@
+<!--pages/accountUpdate/accountUpdate.wxml-->
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class="page_box" style='margin-top: {{height}}px'>
+  <view class="accountInfo border_bottom border_top">
+    <view class="info_title border_bottom01">
+      1.打款至凑一份指定账户
+    </view>
+    <view class="info_item">
+      <text class="mr30">开户名称</text>
+      <text>{{accountInfo.accountName}}</text>
+    </view>
+    <view class="info_item">
+      <text class="mr30">开户银行</text>
+      <text>{{accountInfo.bankName}}{{accountInfo.bankAddress}}</text>
+    </view>
+    <view class="info_item">
+      <text class="mr30">汇款账户</text>
+      <text>{{accountInfo.accountNo}}</text>
+    </view>
+    <view class="info_item">
+      <text class="mr30">汇款金额</text>
+      <text>{{price}}元</text>
+    </view>
+  </view>
+  <view class="accountInfo border_bottom">
+    <view class="info_title border_bottom01">
+      2.提交汇款信息
+    </view>
+    <view class="info_item flex border_bottom01 lh80">
+        <text class="mr30 title">汇款人姓名</text>
+        <input placeholder="请填写汇款人姓名" value="{{name}}" bindinput="bindInputName"></input>
+    </view>
+    <view class="info_item flex border_bottom01 lh80">
+        <text class="mr30 title">汇款银行账号</text>
+        <input placeholder="请填写汇款银行账号" value="{{accountNum}}" bindinput="bindInputAccountNum"></input>
+    </view>
+    <view class="info_item flex border_bottom01 lh80">
+        <text class="mr30 title">开户银行名称</text>
+        <input placeholder="请填写开户银行名称" value="{{bankName}}" bindinput="bindInputBankName"></input>
+    </view>
+    <view class="info_item flex border_bottom01 lh80">
+        <text class="mr30 title">汇款金额</text>
+        <!-- <input  value="{{price}}" disabled bindinput="bindInputRemitPrice"></input> -->
+        <text>{{price}}元</text>
+    </view>
+  </view>
+  <view class="accountInfo border_bottom">
+    <view class="info_title border_bottom01">
+      3.提交汇款成功截图(图片)
+    </view>
+    <view bindtap="uploadImg" class="uploadImg">         
+      <image wx:if="{{imgUrl}}" src="{{imgUrl}}"></image>
+      <image wx:else src="/static/images/addIcon.png"></image>
+    </view>
+    
+  </view>
+  <view class="accountInfo border">
+    <view class="info_title border_bottom01">
+      4.汇款核实
+    </view>
+    <view style="font-size: 24rpx;padding: 20rpx 0;line-height: 32rpx;">提交汇款信息后，您可以在个人中心-我的订单中查看汇款处理进度，若有疑问请拨打热线400-888-8888</view>
+  </view>
+  <view class="point">
+    <text class="pointIn" style="width:32rpx;height:32rpx;border:2rpx solid #ED3F14; color: #ED3F14;border-radius:50%">!</text>
+    <text class="fontMainColor pl20 pointDown" >请谨慎填写汇款信息，提交后不可修改</text>
+  </view>
+  <view class="btn" bindtap="submit">提交</view>
+</view>

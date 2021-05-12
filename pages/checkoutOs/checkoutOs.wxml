@@ -1,0 +1,291 @@
+<view class="container">
+  <view class="address-box">
+    <view class="address-item" bindtap="selectAddress" wx:if="{{checkedAddress.id > 0}}">
+      <view class="address-item-left">
+        收货地址
+      </view>
+      <view class="address-item-right">
+        <view class="l">
+          <text class="name">{{checkedAddress.name}}</text>
+          <text class="default" wx:if="{{checkedAddress.isDefault}}">默认</text>
+        </view>
+        <view class="m">
+          <text class="mobile">{{checkedAddress.tel}}</text>
+          <text class="address">{{checkedAddress.addressDetail}}</text>
+        </view>
+        <view class="r">
+          <image src="/static/images/address_right.png"></image>
+        </view>
+      </view>
+    </view>
+    <view class="address-item address-empty" bindtap="selectAddress" wx:else>
+      <view class="m">
+        还没有收货地址，去添加
+      </view>
+      <view class="r empty_img">
+        <image class="" src="/static/images/address_right.png"></image>
+      </view>
+    </view>
+  </view>
+
+  <view class="address-info-box">
+    <view class="info-box">
+      <view class="l">
+        <view class="t">
+          <text class="info-title" style="letter-spacing: 16rpx;">收件人：</text>
+          <text class="info-text">{{consignee}}</text>
+        </view>
+        <view class="t">
+          <text class="info-title" style="letter-spacing: 6rpx;">联系电话：</text>
+          <text class="info-text" style="padding-left:6rpx;">{{mobile}}</text>
+        </view>
+      </view>
+      <view class="r" bindtap="addressInfoForm">
+        <image src="/static/images/address_right.png"></image>
+      </view>
+    </view>
+  </view>
+
+
+  <view class="overseas">
+    <view class="card-number">
+      <view class="topLeft"></view>
+      <text>身份证号</text>
+      <input placeholder-class="input_def" placeholder="因海关需要，海购商品请填写收货人身份证号"></input>
+    </view>
+
+    <view class="order-item">
+      <view>
+        <view class="item_sections">
+          <image class="icon" src="/static/images/icon_select_none.png" bindtap="checkedItem" data-item-index="{{index}}"></image>
+          <image src="/static/images/address.png" style="width: 32rpx; height: 44rpx;margin-right:20rpx;"></image>
+          <text class="icon_title">旺旺</text>
+        </view>
+        <view class="item-list">
+          <image class="icon" src="/static/images/icon_select_none.png" bindtap="checkedItem" data-item-index="{{index}}"></image>
+          <view class="list_log">
+            <image src="/static/images/church.png"></image>
+          </view>
+          <view class="info">
+            <view class="info_globle">
+              <text class="name">旺旺小小酥 200g/袋</text> </view>
+            <view class="info_grow"></view>
+            <view class="setting">
+              <view class="setting-left">
+                <text class="price fontMainColor">￥7900.00</text>
+              </view>
+              <view class="setting-right">
+                <text class="minus"><text class="jianhao">-</text></text>
+                <input class="number" value="100"></input>
+                <text class="add"><text class="jiahao">＋</text></text>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="item-list">
+          <image class="icon" src="/static/images/icon_select_none.png" bindtap="checkedItem" data-item-index="{{index}}"></image>
+          <view class="list_log">
+            <image src="/static/images/church.png"></image>
+          </view>
+          <view class="info">
+            <view class="info_globle">
+              <text class="name">旺旺小小酥 200g/袋</text> </view>
+            <view class="info_grow"></view>
+            <view class="setting">
+              <view class="setting-left">
+                <text class="price fontMainColor">￥7900.00</text>
+              </view>
+              <view class="setting-right">
+                <text class="minus"><text class="jianhao">-</text></text>
+                <input class="number" value="100"></input>
+                <text class="add"><text class="jiahao">＋</text></text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  
+    <view class="order-item">
+      <view>
+        <view class="item_sections">
+          <image class="icon" src="/static/images/icon_select_none.png" bindtap="checkedItem" data-item-index="{{index}}"></image>
+          <image src="/static/images/address.png" style="width: 32rpx; height: 44rpx;margin-right:20rpx;"></image>
+          <text class="icon_title">凑一份国际购</text>
+        </view>
+         <view class="item-list">
+          <image class="icon" src="/static/images/icon_select_none.png" bindtap="checkedItem" data-item-index="{{index}}"></image>  
+          <view class="list_log">
+            <image src="/static/images/church.png"></image>
+          </view>
+          <view class="info">
+            <view class="info_globle"> <text class="name">旺旺小小酥 200g/袋</text> </view>
+            <view class="info_grow"></view>
+            <view class="setting">
+              <view class="setting-left">
+                <text class="price fontMainColor">￥7900.00</text>
+              </view>
+              <view class="setting-right">
+                <text class="minus"><text class="jianhao">-</text></text>
+                <input class="number" value="100"></input>
+                <text class="add"><text class="jiahao">＋</text></text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 新页面 -->
+    <view class="order-item2">
+      <view>
+        <view class="item_sections">
+          <!-- <image class="icon" src="/static/images/icon_select_none.png" bindtap="checkedItem" data-item-index="{{index}}"></image> -->
+          <image src="/static/images/address.png" style="width: 32rpx; height: 44rpx;margin-right:20rpx;"></image>
+          <text class="icon_title">旺旺</text>
+        </view>
+        <view class="item-list">
+          <!-- <image class="icon" src="/static/images/icon_select_none.png" bindtap="checkedItem" data-item-index="{{index}}"></image> -->
+          <view class="list_log">
+            <image src="/static/images/church.png"></image>
+          </view>
+          <view class="info">
+            <view class="info_globle">
+              <text class="name">旺旺小小酥 200g/袋</text> </view>
+            <view class="info_grow"></view>
+            <view class="setting">
+              <view class="setting-left">
+                <text class="price fontMainColor">￥7900.00</text>
+              </view>
+              <!-- <view class="setting-right">
+                <text class="minus"><text class="jianhao">-</text></text>
+                <input class="number" value="100"></input>
+                <text class="add"><text class="jiahao">＋</text></text>
+              </view> -->
+            </view>
+          </view>
+        </view>
+        <view class="item-list">
+          <!-- <image class="icon" src="/static/images/icon_select_none.png" bindtap="checkedItem" data-item-index="{{index}}"></image> -->
+          <view class="list_log">
+            <image src="/static/images/church.png"></image>
+          </view>
+          <view class="info">
+            <view class="info_globle">
+              <text class="name">旺旺小小酥 200g/袋</text> </view>
+            <view class="info_grow"></view>
+            <view class="setting">
+              <view class="setting-left">
+                <text class="price fontMainColor">￥7900.00</text>
+              </view>
+              <!-- <view class="setting-right">
+                <text class="minus"><text class="jianhao">-</text></text>
+                <input class="number" value="100"></input>
+                <text class="add"><text class="jiahao">＋</text></text>
+              </view> -->
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="bottomInfo">
+        <view class="bottomInfo_Down">
+          <view class="bottomInfo_Down_left">配送方式
+            <text class="delivery">厂家直送</text>
+          </view>
+          <view class="bottomInfo_Down_right">免费配送</view>
+        </view>
+        <view class="bottomInfo_price">
+          <view class="bottomInfo_price_left">共2件</view>
+          <view class="bottomInfo_price_right">小计:
+          <text class="price_right fontMainColor">¥9990.00</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  
+    <view class="order-item2">
+      <view>
+        <view class="item_sections">
+          <!-- <image class="icon" src="/static/images/icon_select_none.png" bindtap="checkedItem" data-item-index="{{index}}"></image> -->
+          <image src="/static/images/address.png" style="width: 32rpx; height: 44rpx;margin-right:20rpx;"></image>
+          <text class="icon_title">凑一份国际购</text>
+        </view>
+         <view class="item-list">
+          <!-- <image class="icon" src="/static/images/icon_select_none.png" bindtap="checkedItem" data-item-index="{{index}}"></image>   -->
+          <view class="list_log">
+            <image src="/static/images/church.png"></image>
+          </view>
+          <view class="info">
+            <view class="info_globle"> <text class="name">旺旺小小酥 200g/袋</text> </view>
+            <view class="info_grow"></view>
+            <view class="setting">
+              <view class="setting-left">
+                <text class="price fontMainColor">￥7900.00</text>
+              </view>
+              <view class="setting-right">
+                <text class="minus"><text class="jianhao">-</text></text>
+                <input class="number" value="100"></input>
+                <text class="add"><text class="jiahao">＋</text></text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="bottomInfo2">
+        <view class="bottomInfo_Up">
+          <view class="bottomInfo_Up_left">进口税</view>
+          <view class="bottomInfo_Up_right">买方承担
+            <text class="bear fontMainColor">9.9%</text>
+          </view>
+        </view>
+        <view class="bottomInfo_Down">
+          <view class="bottomInfo_Down_left">配送方式
+            <text class="delivery">厂家直送</text>
+          </view>
+          <view class="bottomInfo_Down_right">免费配送</view>
+        </view>
+        <view class="bottomInfo_price">
+          <view class="bottomInfo_price_left">共1件</view>
+          <view class="bottomInfo_price_right">小计:
+          <text class="price_right fontMainColor">¥9990.00</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!--海外购订单-->
+
+  <view class="message-box">
+    <text style="font-weight:600">订单备注</text>
+    <input class="message-item" placeholder-class="message-item_place" bindinput="bindMessageInput" placeholder="如需要,请输入备注" value="{{message}}" />
+  </view>
+  <view class="zhanwei"></view>
+  <view class="order-total" hidden="{{openAttr}}" >
+    <view class="l">总计：
+      <text class="fontMainColor" style="font-weight:600">￥{{actualPrice}}</text> </view>
+    <view class="r" bindtap="submitOrder">提交订单</view>
+  </view>
+
+  <view class="attr-pop-box" hidden="{{!openAttr}}">
+    <view class="attr-pop">
+      <view class="box-title">
+        <!-- <text class="button cancel" bindtap="boxChange" data-type="1" style="color: {{cancelColor}}">取消</text> -->
+        <text class="button cancel" bindtap="boxChange" data-type="1" style="color:#666666">取消</text>
+        <text class="text">收货人信息</text>
+        <!-- <text class="button sure" bindtap="boxChange" data-type="2" style="color: {{sureColor}}">确定</text> -->
+        <text class="button sure" bindtap="boxChange" data-type="2" style="color:#ED3F14">确定</text>
+      </view>
+      <view class="box-form">
+        <view class="input">
+          <text class="input-title">收件人</text>
+          <input placeholder="填写收件人信息" bindinput="bindConsignee" value="{{consignee}}"></input>
+        </view>
+        <view class="input">
+          <text class="input-title">联系电话</text>
+          <input placeholder="填写收件人联系电话" bindinput="bindMobile" value="{{mobile}}"></input>
+        </view>
+      </view>
+    </view>
+  </view>
+
+</view>

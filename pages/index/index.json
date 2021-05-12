@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "zan-capsule": "../../lib/zanui-weapp/capsule/index",
+    "nav-bar": "../../components/navbar/index"
+  },
+  "navigationBarBackgroundColor": "#ED3F14",
+  "navigationBarTextStyle": "white"
+}

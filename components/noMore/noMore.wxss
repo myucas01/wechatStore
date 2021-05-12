@@ -1,0 +1,6 @@
+/* components/noMore/noMore.wxss */
+.noMore{
+  line-height: 80rpx;
+  font-size:20rpx;
+  
+}

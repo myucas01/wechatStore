@@ -1,0 +1,17 @@
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class="container" style="margin-top: {{height}}px;">
+  <view class="mimaBox" bindtap="changePwd">
+    <text>修改密码</text>
+    <image class="user_coreBox_item_image" src="/static/images/address_right.png"></image>
+  </view>
+  <view class="mimaBox" bindtap="changePhone">
+    <text>修改手机号</text> 
+    <view>
+      <text style="display:none">152****9847</text>
+      <image class="user_coreBox_item_image" style="margin-left:20rpx" src="/static/images/address_right.png"></image>
+    </view>
+  </view><!--手机号暂时不展示-->
+
+  <!-- wx:if="{{hasLogin}}"  -->
+  <!-- <view class="logout" bindtap="exitLogin">退出登录</view> -->
+</view>

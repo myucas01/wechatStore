@@ -1,0 +1,95 @@
+/* pages/accountUpdate/accountUpdate.wxss */
+.page_box{
+  position: relative;
+  padding-bottom: 100rpx;
+}
+.accountInfo{
+  padding-left: 20rpx;
+}
+.accountInfo .info_title{
+  line-height: 70rpx;
+  color: #333;
+  font-weight: 600;
+}
+.accountInfo .info_item{
+  line-height: 60rpx;
+}
+.accountInfo .info_item text{
+  color: #666;
+  font-size: 24rpx;
+}
+.accountInfo .info_item .title{
+  width: 6em;
+  color: #333;
+  font-weight: 600
+}
+.accountInfo .info_item input{
+  font-size: 24rpx;
+}
+.accountInfo.border{
+  border-left: 1px solid #EBEBEB;
+  border-right: 1px solid #EBEBEB;
+  border-bottom: 1px solid #EBEBEB;
+}
+.btn{
+  background: #E71F19;
+  color: #fff;
+  text-align: center;
+  padding: 35rpx 20rpx 45rpx 20rpx;
+  /* line-height: 80rpx; */
+  font-size: 33rpx;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height:100rpx
+}
+.border_bottom01{
+  border-bottom: 1px solid #F7F7F9;
+}
+.border_bottom{
+  border-bottom: 20rpx solid #F2F2F2;
+}
+.border_top{
+  border-top: 20rpx solid #F2F2F2;
+}
+.img{
+  width: 26rpx;
+  height: 26rpx;
+  display: block
+}
+.mr30{
+  margin-right: 30rpx;
+}
+.accountInfo  .lh80{
+  line-height: 80rpx;
+}
+.uploadImg{
+  width:130rpx;
+  height:130rpx;
+  padding: 20rpx;
+}
+.uploadImg image{
+  width:100%;
+  height:100%;
+}
+.point {
+  display: flex;
+  flex-direction: row;
+  padding: 18rpx 0 0 30rpx;
+  margin-bottom: 40rpx
+}
+
+.pointIn {
+  width: 32rpx;
+  height: 32rpx;
+  display: flex;
+  justify-content: center;
+
+}
+
+.pointDown {
+  display: block;
+  height: 32rpx;
+  line-height: 32rpx;
+  font-size: 28rpx
+}

@@ -1,0 +1,65 @@
+<!--pages/setting/changePhone/index.wxml-->
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class="container" wx:if="{{!changeSuccess}}" style="margin-top: {{height}}px;">
+    <view style="margin-top:133rpx">
+      <text style="color: #000;font-weight:700;font-size:40rpx" >{{phone}}</text>
+      <text style="margin-left: 10rpx;color: #000;font-weight:700;font-size:40rpx">当前手机号</text>
+    </view>
+    
+    <view class="page-section inputBox">
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input positionS">
+          <input class="weui-input" placeholder="请输入新手机号" bindinput="checkNewPhone" value="{{newPhone}}"/>
+          <view bindtap="clearNewPhone" class="group groupPosit" wx:if="{{newPhone != ''}}"> <!--input不为空时,出现,点击清除input-->
+            <block>
+              <icon type="clear" size="15"/>
+            </block>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="auth_code inputBox">
+          <input placeholder-class="b_input_placeholder" class="b_input" placeholder="请输入验证码" value="{{code}}" bindinput="checkCode"></input>
+          <view bindtap="clearCode" class="group codePosit" wx:if="{{code != '' }}"> <!--input不为空时,出现,点击清除input-->
+            <block>
+              <icon type="clear" size="15"/>
+            </block>
+          </view>
+
+          <text style="color: red;">{{codeMs}}</text>
+          <view class="auth_code_button" type="default" style="{{authButton}}" bindtap="sendCode">{{codeName}}</view>
+    </view>
+
+    <view class="warningInfo">
+      <view class="group" style="color:#999">
+        <block>
+          <icon type="warn" size="15" color="#999" style="margin-right:10rpx"/>修改手机号后可以使用新手机号登录凑一份
+        </block>
+      </view>
+      <view class="group" style="color:#ED3F14" wx:if="{{changeMs}}">
+        <block>
+          <icon type="warn" size="15" color="#ED3F14" style="margin-right:10rpx"/>{{changeMs}}
+        </block>
+      </view>
+    </view>
+  <!-- 按钮 -->
+  <view class="btnBox">
+    <!-- <view wx:if="{{warnInfo}}" class ='oldPwdWor'>验证码错误!</view> <!--错误提示-->
+    <!-- <view> -->
+    <view class="confirmPWDS" bindtap="changePhone" wx:if="{{buttonTrue}}">确认修改</view>
+    <view class="confirmPWD" bindtap="changePhone" wx:else>确认修改</view>
+      <!-- <view wx:if="{{confirmPWDStatus}}" class=" confirmPWD?">确认修改</view>
+      <view  wx:else class=" confirmPWDS" bindtap="postPwd">确认修改</view> -->
+    <!-- </view> -->
+    
+  </view>
+</view>
+<view class="container" style="margin-top: {{height}}px;">
+  <view class="group changeSuccess">
+    <block>
+        <icon type="success" size="70"/>
+      </block>
+    <view>手机号 修改成功</view>
+  </view>
+</view>

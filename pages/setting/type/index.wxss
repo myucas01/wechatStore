@@ -1,0 +1,24 @@
+/* pages/setting/password/index.wxss */
+page{
+  height: 100%
+}
+.container {
+  height: 100%;
+  position: relative;
+  padding-top: 20rpx 
+}
+.changePwdBox {
+  height: 100rpx;
+  background: #fff;
+  display: flex;
+  flex-direction: row;
+  padding: 0 20rpx;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+  align-items: center;
+}
+.user_coreBox_item_image{
+  width:30rpx;
+  height:30rpx;
+  margin-right: 10rpx;
+}

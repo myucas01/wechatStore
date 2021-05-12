@@ -1,0 +1,73 @@
+/**app.wxss**/
+page{
+  padding-bottom: 1rpx;
+}
+.container {
+  box-sizing: border-box;
+  background-color: #f4f4f4;
+  font-family: PingFangSC-Light, helvetica, 'Heiti SC';
+}
+
+view, image, text, navigator {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+view, text {
+  font-family: PingFangSC-Light, helvetica, 'Heiti SC';
+  font-size: 29rpx;
+  color: #333;
+}
+.mt10{
+  margin-top: 10rpx;
+}
+.mt20{
+  margin-top: 20rpx;
+}
+.pr10{
+  padding-right: 10rpx;
+}
+.pl10{
+  padding-left: 10rpx;
+}
+.pr20{
+  padding-right: 20rpx;
+}
+.pl20{
+  padding-left: 20rpx;
+}
+.f24{
+  font-size: 24rpx;
+}
+.f28{
+  font-size: 28rpx;
+}
+.f32{
+  font-size: 32rpx;
+}
+.f36{
+  font-size: 36rpx;
+}
+.fontMainColor{
+  color: #E71F19;
+}
+.flex{
+  display: flex;
+  align-items: center;
+}
+.flex-justify{
+  justify-content: space-between;
+}
+.fontMainWeight {
+  font-weight: 600
+}
+/* .blackStrip{
+  width:268rpx;
+  height:10rpx;
+  background:#000000;
+  border-radius:5rpx;
+  position:absolute;
+  left:32.27%;
+  bottom:1.11%;
+} */

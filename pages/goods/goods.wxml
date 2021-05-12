@@ -1,0 +1,332 @@
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view bindtap="closeMain" class="container" style='margin-top: {{height}}px'>
+  <swiper class="goodsimgs" indicator-dots="true" autoplay="true" interval="3000" duration="1000">
+    <swiper-item wx:for="{{img_url}}" wx:key="*this">
+      <image src="{{item}}" background-size="cover"></image>
+    </swiper-item>
+  </swiper>
+  <!-- 分享 -->
+  <!-- <view class='goods_name'>
+    <view class='goods_name_left'>{{goods.name}}</view>
+    <view hidden="{{!canShare}}" class="goods_name_right" bindtap="shareFriendOrCircle">分享</view>
+  </view> -->
+  <view class="share-pop-box" hidden="{{!openShare}}">
+    <view class="share-pop">
+      <view class="close" bindtap="closeShare">
+        <image class="icon" src="/static/images/icon_close.png"></image>
+      </view>
+      <view class='share-info'>
+        <button class="sharebtn" open-type="share" wx:if="{{!isGroupon}}">
+          <image class='sharebtn_image' src='/static/images/wechat.png'></image>
+          <view class='sharebtn_text'>分享给好友</view>
+        </button>
+        <button class="savesharebtn" open-type="openSetting" bindopensetting="handleSetting" wx:if="{{(!isGroupon) && (!canWrite)}}">
+          <image class='sharebtn_image' src='/static/images/friend.png'></image>
+          <view class='sharebtn_text'>发朋友圈</view>
+        </button>
+        <button class="savesharebtn" bindtap="saveShare" wx:if="{{!isGroupon && canWrite}}">
+          <image class='sharebtn_image' src='/static/images/friend.png'></image>
+          <view class='sharebtn_text'>发朋友圈</view>
+        </button>
+      </view>
+    </view>
+  </view>
+
+  <view class="goods-info">
+    <view class="c">
+      <text class="desc" wx:if="{{goods.brief}}">{{goods.brief}}</text>
+      <view class="price">
+        <view class="retailPrice float_left">￥{{userType==0?goods.memberPrice:(userType==1||2?goods.collectPrice:goods.memberPrice)}}
+        </view>
+        <view class="counterPrice ">原价：￥{{goods.counterPrice}}</view>
+        <view class="retailPrice float_left lastText"  wx:if="{{userType === '0'}}">每人限购{{member_max_quantity}}件</view>
+      </view>
+
+      <view class="brand" wx:if="{{brand.name}}">
+        <navigator url="../brandDetail/brandDetail?id={{brand.id}}">
+          <text>{{brand.name}}</text>
+        </navigator>
+      </view>
+    </view>
+  </view>
+  <!-- 快递 -->
+  <view class="bg-border-top">
+    <view class="section-nav section-attr checkedBorder">
+      <view class="t">快递</view>
+      <view class="text-mright">免费</view>
+    </view>
+    <view bindtap="openShow_detail_site" class="section-nav section-attr ">
+      <view class="t">送至</view>
+      <view class="text-elipsis">{{user_site_list.province }} {{user_site_list.county}}</view>
+      <image class="i" src="/static/images/address_right.png" background-size="cover"></image>
+    </view>
+  </view>
+
+  <view class="section-nav section-attr bg-border-top checkedBox" bindtap="switchAttrPop">
+    <view class="t">{{checkedSpecText}}</view>
+    <view class="text-ccc">请选择</view>
+    <image class="i" src="/static/images/address_right.png" background-size="cover"></image>
+  </view>
+  <view class="section-nav section-attr">
+    <view class="t">起订量</view>
+    <!-- <image class="i" src="/static/images/address_right.png" background-size="cover"></image> -->
+    <view class="fontMainColor">{{userType==0?goods.memberMoq:goods.moq}}</view>  <!---memberMoq会员--> <!--moq企业-->
+  </view>
+  <view class="comments" wx:if="{{comment.count > 0}}">
+    <view class="h">
+      <navigator url="/pages/comment/comment?valueId={{goods.id}}&type=0">
+        <text class="t">评价({{comment.count > 999 ? '999+' : comment.count}})</text>
+        <text class="i">查看全部</text>
+      </navigator>
+    </view>
+    <view class="b">
+      <view class="item" wx:for="{{comment.data}}" wx:key="id">
+        <view class="info">
+          <view class="user">
+            <image src="{{item.avatar}}"></image>
+            <text>{{item.nickname}}</text>
+          </view>
+          <view class="time">{{item.addTime}}</view>
+        </view>
+        <view class="content">
+          {{item.content}}
+        </view>
+        <view class="imgs" wx:if="{{item.picList.length > 0}}">
+          <image class="img" wx:for="{{item.picList}}" wx:key="*this" wx:for-item="iitem" src="{{iitem}} "></image>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- <view class="goods-attr">
+    <view class="t">商品参数</view>
+    <view class="l">
+      <view class="item" wx:for="{{attribute}}" wx:key="name">
+        <text class="left">{{item.attribute}}</text>
+        <text class="right">{{item.value}}</text>
+      </view>
+    </view>
+  </view> -->
+  <view class="goods-detail bg-border-top">
+    <view class="h">
+      <view class="line"></view>
+      <text class="title">商品详情</text>
+    </view>
+    <view class="detail">
+      <import src="/lib/wxParse/wxParse.wxml" />
+      <template is="wxParse" data="{{wxParseData:goodsDetail.nodes}}" />
+    </view>
+  </view>
+
+  <view class="common-problem">
+    <view class="h">
+      <view class="line"></view>
+      <text class="title">常见问题</text>
+    </view>
+    <view class="b">
+      <view class="item" wx:for="{{issueList}}" wx:key="id">
+        <view class="question-box">
+          <text class="spot"></text>
+          <text class="question">{{item.question}}</text>
+        </view>
+        <view class="answer">
+          {{item.answer}}
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 大家都在看 -->
+  <view class="related-goods" wx:if="{{relatedGoods.length > 0}}">
+    <view class="h">
+      <view class="line"></view>
+      <text class="title">大家都在看</text>
+    </view>
+    <view class="b">
+      <view class="item" wx:for="{{relatedGoods}}" wx:key="id">
+        <navigator url="/pages/goods/goods?id={{item.id}}">
+          <image class="img" src="{{item.picUrl}}" background-size="cover"></image>
+          <text class="name">{{item.name}}</text>
+          <text class="price">￥<text class="le_size">{{userType==0?item.memberPrice:(userType==1||2?item.collectPrice:item.memberPrice)}}</text> <!--专柜价--><!-- <text class="out_line">{{item.counterPrice}}</text>--></text> 
+        </navigator>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!--送至地址弹窗界面1 -->
+<view class="attr-pop-box" hidden="{{!open_detail_site}}">
+  <view class="attr-pop">
+    <view class="close" bindtap="close_detail_site">
+      <image class="icon" src="/static/images/icon_close.png"></image>
+    </view>
+    <view>请选择地址</view>
+    <view class="site_content">
+
+      <!-- <view bindtap="set_default_site" data-addressId="{{user_site_list.id}}" data-detailSite="{{user_site_list.province}}{{user_site_list.county}} ">
+        {{user_site_list.province}}{{user_site_list.city}}{{user_site_list.county}}   
+      </view> -->
+      <view bindtap="set_default_site" wx:for="{{alladdress}}" wx:for-item="item"  wx:key="id" data-address="{{item}}">
+        {{item.province }} {{item.county}}
+      </view>
+    </view>
+  </view>
+</view>
+  <!--购物弹窗界面1 -->
+  <view class="attr-pop-box" hidden="{{!openAttr}}" bindtap="closeCart">
+    <view class="attr-pop" catchtap="closeNo">
+      <view class="close" bindtap="closeAttr">
+        <icon class="icon" type="cancel" color="#DDDEE1"></icon>
+      </view>
+      <view class="img-info">
+        <image class="img" src="{{pic}}"></image>
+        <view class="info">
+          <view class="c">
+                    <!-- 选择标准 -->
+            <view class="p">￥{{checkedSpecPrice}}</view>
+            <view class="a">{{tmpSpecText}}</view>
+            <view class="d" wx:if="{{userType === '0'}}">每人限购{{member_max_quantity}}件</view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 规格列表 -->
+      <view class="spec-con">
+        <view class="spec-item" wx:for="{{specificationList}}" wx:key="name">
+          <view class="name">{{item.name}}</view>
+          <view class="values">
+            <!-- <view class="value {{vitem.checked ? 'selected' : ''}}" bindtap="clickSkuValue" wx:for="{{item.valueList}}" wx:for-item="vitem" wx:key="*this" data-value-id="{{vitem.id}}" data-name="{{vitem.specification}}">{{vitem.value}}</view> -->
+            <view class="value {{vitem.checked ? 'selected' : ''}}" catchtap="closeNo" wx:for="{{item.valueList}}" wx:for-item="vitem" wx:key="*this" data-value-id="{{vitem.id}}" data-name="{{vitem.specification}}">{{vitem.value}}</view>
+          </view>
+        </view>
+
+        <view class="spec-con" wx:if="{{groupon.length > 0}}">
+          <view class="spec-item">
+            <view class="name">团购立减</view>
+            <view class="values">
+              <view class="value {{vitem.checked ? 'selected' : ''}}" bindtap="clickGroupon" wx:for="{{groupon}}" wx:for-item="vitem" wx:key="{{vitem.id}}" data-value-id="{{vitem.id}}" data-name="{{vitem.specification}}">￥{{vitem.discount}} ({{vitem.discountMember}}人)</view>
+            </view>
+          </view>
+        </view>
+
+        <!-- 起订量 -->
+        <view class="spec-startNum">
+          <view class="name">起订量</view>
+          <text class="fontMainColor" style="fontSize:28rpx">{{userType==0?goods.memberMoq:goods.moq}}</text>
+        </view>
+
+        <!-- 数量 -->
+        <view class="number-item flex flex-justify">
+          <view class="name">购买数量</view>
+          <view class="selnum">
+            <view class="cut {{leastNum ? 'hui' : ''}}" catchtap="cutNumber">-</view>
+            <input value="{{number}}" class="number" bindinput="numberInput" type="number" />
+            <view class="add" catchtap="addNumber">+</view>
+          </view>
+        </view>
+
+        <!--按钮-->
+        <!-- <view class="spec-button-true" bindtap="sureToCart">
+          <text class="bt-sure">确定</text>
+        </view> -->
+        <view class="spec-button">
+          <text class="bt-sure b1 addCart" bindtap="addGoods" style="background:{{addToCart.bg}};color: {{addToCart.fc}}">加入购物车</text>
+          <!-- <text class="bt-sure" bindtap="buyGoods" style="background:{{addFastBg.bg}};color: {{addFastBg.fc}}">立即购买</text> -->
+          <text class="bt-sure goBug" bindtap="buyGoods" style="background:{{addFastBg.bg}};color: {{addFastBg.fc}}">立即购买</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!--购物弹窗界面2 -->
+  <view class="attr-pop-box-true" hidden="{{!openAttrTrue}}" bindtap="closeCart">
+    <view class="attr-pop-true" catchtap="closeNo">
+      <view class="close" bindtap="closeAttrTrue">
+        <icon class="icon" type="cancel" color="#DDDEE1"></icon>
+        <!-- <image class="icon" src="/static/images/icon_close.png"></image> -->
+      </view>
+      <view class="img-info">
+        <image class="img" src="{{pic}}"></image>
+        <view class="info">
+          <view class="c">
+          <!-- 加入购物车 -->
+            <view class="p">￥{{checkedSpecPrice}}</view>
+            <view class="a">{{tmpSpecText}}</view>
+            <view class="d"  wx:if="{{userType === '0'}}">每人限购{{member_max_quantity}}件</view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 规格列表 -->
+      <view class="spec-con">
+        <view class="spec-item" wx:for="{{specificationList}}" wx:key="name">
+          <view class="name">{{item.name}}</view>
+          <view class="values">
+            <view class="value {{vitem.checked ? 'selected' : ''}}" catchtap="closeNo" wx:for="{{item.valueList}}" wx:for-item="vitem" wx:key="*this" data-value-id="{{vitem.id}}" data-name="{{vitem.specification}}">{{vitem.value}}</view>
+          </view>
+        </view>
+        <view class="spec-con" wx:if="{{groupon.length > 0}}">
+          <view class="spec-item">
+            <view class="name">团购立减</view>
+            <view class="values">
+              <view class="value {{vitem.checked ? 'selected' : ''}}" bindtap="clickGroupon" wx:for="{{groupon}}" wx:for-item="vitem" wx:key="{{vitem.id}}" data-value-id="{{vitem.id}}" data-name="{{vitem.specification}}">￥{{vitem.discount}} ({{vitem.discountMember}}人)</view>
+            </view>
+          </view>
+        </view>
+
+        <!-- 起订量 -->
+        <view class="spec-startNum">
+          <view class="name">起订量</view>
+          <text class="fontMainColor">{{userType==0?goods.memberMoq:goods.moq}}</text>
+        </view>
+
+        <!-- 数量 -->
+        <view class="number-item flex flex-justify">
+          <view class="name">购买数量</view>
+          <view class="selnum">
+            <view class="cut {{leastNum?'hui':''}}" catchtap="cutNumber">-</view>
+            <input value="{{number}}" class="number" bindinput="numberInput" type="number"/>
+            <view class="add" catchtap="addNumber">+</view>
+          </view>
+        </view>
+
+        <!--按钮-->
+        <view class="spec-button-true" bindtap="sureToCart">
+          <text class="bt-sure">确定</text>
+        </view>
+
+
+      </view>
+    </view>
+  </view>
+
+
+  <!-- 联系客服 -->
+  <!-- <view class="contact">
+  <contact-button style="opacity:0;position:absolute;" type="default-dark" session-from="weapp" size="27">
+  </contact-button>
+</view> -->
+  <!-- 底部 该商品在该地区暂不支持销售,非常抱歉! open_error_site -->
+  <view class="open_error_site" hidden="{{!open_error_site}}">
+    该商品在该地区暂不支持销售,非常抱歉!
+  </view>
+  <!-- 底部按钮 -->
+  <view class="bottom-btn">
+    <view class="l l-cart" wx:if="{{!isGroupon}}">
+      <view class="box">
+        <!-- <text class="cart-count">{{cartGoodsCount}}</text> -->
+        <image bindtap="openCartPage" class="icon" src="/static/images/ic_menu_shoping_nor.png"></image>
+      </view>
+    </view>
+    <view class="l l-collect" bindtap="addCollectOrNot" wx:if="{{!isGroupon}}">
+      <image class="icon" src="{{ collectImage }}"></image>
+    </view>
+    <!-- <view class="r" bindtap="addToCart" style="background:{{addToCart.bg}};color: {{addToCart.fc}}" wx:if="{{!soldout && !isGroupon && !open_error_site}}">加入购物车</view> -->
+    <view class="r" bindtap="addToCart" style="background:{{addToCart.bg}};color: {{addToCart.fc}}" wx:if="{{!soldout && !isGroupon && !open_error_site}}">加入购物车</view>
+    <!-- <view class="c" style="background:{{addFastBg.bg}};color: {{addFastBg.fc}}" bindtap="addFast" wx:if="{{!soldout && !open_error_site}}">{{isGroupon?'参加团购':'立即购买'}}</view> -->
+    <!-- <view class="c" style="background: #E71F19;color: #fff" bindtap="addFast" wx:if="{{!soldout && !open_error_site}}">{{isGroupon?'参加团购':'立即购买'}}</view> -->
+    <view class="c" style="background: #E71F19;color: #fff" bindtap="addFast" wx:if="{{!soldout && !open_error_site}}">{{isGroupon?'参加团购':'立即购买'}}</view>
+    <view class="n" wx:if="{{soldout}}">商品已售空</view>
+    <navigator url="/pages/category/category?id={{catalog_id}}" class="r error_botton" wx:if="{{open_error_site}}">
+      查看类似商品 
+    </navigator>
+  </view>

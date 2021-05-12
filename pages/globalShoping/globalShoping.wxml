@@ -1,0 +1,15 @@
+<!--pages/gloablShaping/globalShoping.wxml-->
+<!-- <view class="global">
+  <view class="sc">
+  
+  </view>
+  <view class="brand">
+    <view class="brand_title">
+    
+    </view>
+    <view class="brand_banner">
+    
+    </view>
+  </view>
+</view> -->
+<view style="text-algin:center;">敬请期待</view>

@@ -1,0 +1,17 @@
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class="container" style="margin-top: {{height}}px;">
+  <navigator url="/pages/setting/password/index?type=1">
+    <view class="changePwdBox">
+        <view bindtap="changePwd" data-type='1'>通过旧密码方式修改</view>
+        <image class="user_coreBox_item_image" style="margin-left:20rpx" src="/static/images/address_right.png"></image>
+    </view>
+    
+  </navigator>
+  <navigator url="/pages/setting/password/index?type=2">
+    <view class="changePwdBox">
+        <view bindtap="changePwd" data-type='2'>通过手机号验证修改</view>
+        <image class="user_coreBox_item_image" style="margin-left:20rpx" src="/static/images/address_right.png"></image>
+    </view>
+    
+  </navigator>
+</view>

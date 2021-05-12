@@ -1,0 +1,21 @@
+<view class='nav-wrap' style='height: {{height*2 + 30}}px; background: {{navbarData.background}};'>
+  <view class='nav-title' style='line-height: {{height*2 + 44}}px;color: {{navbarData.color}}'>{{navbarData.title}}</view>
+  <view style='display: flex; justify-content: space-around;flex-direction: column'>
+    <view class='nav-capsule' style='height: {{height*2 + 44}}px;' wx:if='{{navbarData.showCapsule == 0}}'>
+      <view bindtap='_backhome' class="nav-back">关闭
+        <!-- <image src='/static/images/address_right.png' mode='aspectFill' class='back-pre'></image> -->
+      </view>
+      <!-- <view class='navbar-v-line' wx:if='{{!share}}'></view> -->
+      <!-- <view bindtap='_backhome'>主页
+      </view> -->
+    </view>
+    <view class='nav-capsule' style='height: {{height*2 + 44}}px;' wx:if='{{navbarData.showCapsule == 1}}'>
+      <view bindtap='_navback' class="nav-back">返回
+        <!-- <image src='/static/images/address_right.png' mode='aspectFill' class='back-pre'></image> -->
+      </view>
+      <!-- <view class='navbar-v-line' wx:if='{{!share}}'></view> -->
+      <!-- <view bindtap='_backhome'>主页
+      </view> -->
+    </view>
+  </view>
+</view>

@@ -1,0 +1,84 @@
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class="add-address" style='margin-top: {{height}}px'>
+  <view class="add-form">
+    <view class="form-item">
+      <text  class="input__title">姓名</text>
+      <input class="input_info" type="text" value="{{address.name}}" bindblur="input_name"></input>
+      <!-- <input class="input" bindinput="bindinputName" value="{{address.name}}"  auto-focus/> -->
+    </view>
+    <view class="form-item">
+      <text  class="input__title">电话</text>
+      <input class="input_info" type="number" maxlength="11" value="{{address.tel}}" bindblur="input_tel"></input>
+
+      <!-- <input class="input" bindinput="bindinputMobile" value="{{address.tel}}"/> -->
+    </view>
+    <view class="form-item">
+      <!-- <input class="input" value="{{address.province + address.city + address.county}}" disabled bindtap="chooseRegion" placeholder="省份、城市、区县" /> -->
+       <!-- <text  class="input__title">地区</text>
+       <text class="input_info">{{address.province + address.city + address.county}}</text> -->
+
+        <view class="input__title">所在地区</view>
+        <picker class="input_info" mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+          <view class="picker">
+            当前选择：{{region[0]}}，{{region[1]}}，{{region[2]}}
+          </view>
+        </picker>
+
+       <!-- <input class="input" value="{{address.province + address.city + address.county}}"/> -->
+    </view>
+
+    <view class="form-item">
+      <text  class="input__title">详细地址</text>
+      <input class="input_info" type="text" value="{{address.addressDetail}}" bindblur="input_addressDetail"></input>
+
+      <!-- <input class="input" bindinput="bindinputAddress" value="{{address.addressDetail}}" disabled/> -->
+    </view>
+    <view class="form-default">
+      <!-- <image class="icon" wx:if="{{address.isDefault == 1}}" src="/static/images/icon_select.png" bindtap="bindIsDefault"></image>
+      <image class="icon" wx:else src="/static/images/icon_select_none.png"  bindtap="bindIsDefault" ></image>   -->
+      <text bindtap="bindIsDefault" class="default-input">设为默认收货地址</text>
+      <switch style="zoom: 0.8;" checked="{{address.isDefault}}" bindchange="switchChange" color="#E71F19"/>
+    </view>
+  </view>
+
+  <view class="btns">
+    <!-- <button class="cannel" bindtap="cancelAddress">取消</button> -->
+    <button class="save" bindtap="saveAddress">保存</button>
+  </view>
+  <view class="btns_delete">
+    <!-- <button class="cannel" bindtap="cancelAddress">取消</button> -->
+    <button class="save" bindtap="deleteAddress">删除</button>
+  </view>
+  <view class="toast_box" hidden="{{!deleteAddress_show}}">
+  <view class="toast_box_a">
+    <view class="box_title">
+      提示
+    </view>
+    <view class="box_content">
+    <view>
+    确定删除该收获地址
+    </view>
+    </view>
+    <view class="box_footer">
+      <view bindtap="deleteAddress_hidden"> 取消 </view>
+      <view class="bg" bindtap="deleteAddress_btn"> 确定 </view>
+    </view>
+  </view>
+  </view>
+ 
+
+  <view class="region-select" wx:if="{{openSelectRegion}}">
+    <view class="hd">
+      <view class="region-selected">
+        <view class="item {{item.code == 0 ? 'disabled' : ''}} {{(regionType -1) === index ? 'selected' : ''}}" bindtap="selectRegionType" data-region-type-index="{{index}}" wx:for="{{selectRegionList}}" wx:key="code">{{item.name}}</view>
+      </view>
+      <view class="done {{selectRegionDone ? '' : 'disabled'}}" bindtap="doneSelectRegion">确定</view>
+    </view>
+    <view class="bd">
+      <scroll-view scroll-y class="region-list">
+        <view class="item {{item.selected ? 'selected' : ''}}" bindtap="selectRegion" data-region-index="{{index}}" wx:for="{{regionList}}" wx:key="code">{{item.name}}</view>
+      </scroll-view>
+    </view>
+  </view>
+</view>
+<view class="bg-mask" bindtap="cancelSelectRegion" wx:if="{{openSelectRegion}}"></view>

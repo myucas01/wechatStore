@@ -1,0 +1,54 @@
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class="container" style="margin-top: {{height}}px;">
+  <!--原密码修改-->
+  <view>
+    <view class="page-title">
+      <text>为了便于您能更快登录账号以及账号安全 请先设置账号登录密码</text>
+    </view>
+    <view class="page-section inputBox">
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input positionS">
+          <input class="weui-input" password focus placeholder="请输入新密码" bindinput="checkOldPwd" value="{{oldPassword}}"/>
+          <view bindtap="clearOldPwd" class="group groupPosit" wx:if="{{oldPassword != ''}}"> <!--input不为空时,出现,点击清除input-->
+            <block>
+              <icon type="clear" size="15"/>
+            </block>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="page-section inputBox">
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input positionS">
+          <input class="weui-input"password placeholder="请再次输入新密码" bindinput="checkNewPwd2" value="{{newPassword2}}"/>
+          <view bindtap="clearNewPwd2" class="group groupPosit" wx:if="{{newPassword2 != ''}}"> <!--input不为空时,出现,点击清除input-->
+            <block>
+              <icon type="clear" size="15"/>
+            </block>
+          </view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+  <!-- 提示信息 -->
+  <view class="warningInfo">
+      <view class="group" style="color:#999">
+        <block>
+          <icon type="warn" size="15" color="#999" style="margin-right:10rpx"/>密码长度在8位及以上，建议密码应包含数字、大小写字母、特殊字符的两种以上。
+        </block>
+      </view>
+      <view class="group" style="color:red" wx:if="{{changeMs}}">
+        <block>
+          <icon type="warn" size="15" color="#ED3F14" style="margin-right:10rpx"/>{{changeMs}}
+        </block>
+      </view>
+  </view>
+  <!-- 按钮 -->
+  <view class="btnBox">
+    <view wx:if="{{warnInfo}}" class ='oldPwdWor'>原密码输入错误,请重新输入</view> <!--错误提示-->
+    <view>
+    <view class="confirmPWDS" bindtap="changePwd">确认设置密码</view>
+    </view>
+  </view>
+</view>

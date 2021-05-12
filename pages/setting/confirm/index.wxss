@@ -1,0 +1,24 @@
+/* pages/setting/confirm/index.wxss */
+page {
+  height: 100%
+}
+.container {
+  width: 100%;
+  height: 100%;
+  padding-top: 0.1rpx;
+  background: #fff
+}
+.center {
+  width: 100%;
+  margin-top: 157rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+image {
+  width: 198rpx;
+  height: 198rpx;
+  margin-bottom: 127rpx
+}

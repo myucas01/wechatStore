@@ -1,0 +1,100 @@
+.login-box {
+  width: 100%;
+  height: 1624rpx;
+  overflow: hidden;
+  padding: 0 40rpx;
+  background-color: #fff;
+}
+.login_box_logo{
+  height:276rpx;
+  text-align: center
+}
+.wx-login-btn {
+  margin: 60rpx 0 40rpx 0;
+  height: 96rpx;
+  line-height: 96rpx;
+  font-size: 30rpx;
+  border-radius: 6rpx;
+  width: 90%;
+  color: #fff;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: flex;
+  bottom: 0;
+  left: 0;
+  padding: 0;
+  margin-left: 5%;
+  text-align: center;
+  /* padding-left: -5rpx; */
+  border-top-left-radius: 50rpx;
+  border-bottom-left-radius: 50rpx;
+  border-top-right-radius: 50rpx;
+  border-bottom-right-radius: 50rpx;
+  letter-spacing: 3rpx;
+}
+
+.account-login-btn {
+  width: 90%;
+  margin: 0 auto;
+  color: #fff;
+  font-size: 30rpx;
+  height: 96rpx;
+  line-height: 96rpx;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: flex;
+  bottom: 0;
+  left: 0;
+  border-radius: 0;
+  padding: 0;
+  margin-left: 5%;
+  text-align: center;
+  /* padding-left: -5rpx; */
+  border-top-left-radius: 50rpx;
+  border-bottom-left-radius: 50rpx;
+  border-top-right-radius: 50rpx;
+  border-bottom-right-radius: 50rpx;
+  letter-spacing: 3rpx;
+  background-image: linear-gradient(to right, #9a9ba1 0%, #9a9ba1 100%);
+}
+.my_firm{
+  width:670rpx;
+  height:240rpx;
+  margin:0 auto;
+  background:rgba(255,255,255,1);
+  box-shadow:6rpx 4rpx 48rpx 0rpx rgba(0,0,0,0.09),6rpx 4rpx 48rpx 0rpx rgba(116,89,161,0.09);
+  border-radius:12rpx;
+  border:4rpx solid rgba(237,63,20,1);
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+  opacity: 0.9;
+}
+.my_firm text,.my_staff text{
+  font-size:38rpx;
+  font-family:PingFangSC-Medium,PingFang SC;
+  font-weight:550;
+  color:rgba(0,0,0,1);
+  line-height:38rpx;
+  margin-left:46rpx;
+  }
+  .my_firm image,.my_staff image{
+    margin-right:94rpx;
+  }
+  .my_staff{
+    margin:0 auto;
+    margin-top:40rpx;
+    width:670rpx;
+    height:240rpx;
+    background:rgba(255,255,255,1);
+    box-shadow:6rpx 4rpx 48rpx 0rpx rgba(0,0,0,0.09),6rpx 4rpx 48rpx 0rpx rgba(116,89,161,0.09);
+    border-radius:12rpx;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    opacity: 0.9;
+  }

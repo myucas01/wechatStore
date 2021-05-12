@@ -1,0 +1,217 @@
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class="container" style='margin-top: {{height}}px'>
+  <view class="address-box">
+    <view class="address-item" bindtap="selectAddress" wx:if="{{checkedAddress.id > 0}}">
+      <text class="addressTittle" style="font-size:32rpx;font-weight:900">收货地址</text>
+      <view class="l">
+        <text class="name">{{checkedAddress.name}}</text>
+        <text class="default" wx:if="{{checkedAddress.isDefault}}">默认</text>
+      </view>
+      <view class="m">
+        <text class="mobile">{{checkedAddress.tel}}</text>
+        <text class="address" style="color:#80848f;font-weight:200">{{checkedAddress.addressDetail}}</text>
+      </view>
+      <view class="r">
+        <image src="/static/images/address_right.png"></image>
+      </view>
+    </view>
+    <view class="address-item address-empty" bindtap="selectAddress" wx:else> 
+      <view class="m">
+        还没有收货地址，去添加
+      </view>
+      <view class="r">
+        <image src="/static/images/address_right.png"></image>
+      </view>
+    </view>
+  </view>
+  
+  <!-- <view class="address-info-box" wx:if="{{userType == '1' || userType == '2'}}">
+    <view class="info-box">
+      <text class="l" decode="{{true}}">
+        <text style="color: red;">*</text>&nbsp;完善收件人信息
+      </text>
+      <view class="r" bindtap="addressInfoForm">
+        <image src="/static/images/address_right.png"></image>
+      </view>
+    </view>
+  </view> -->
+
+  <view class="identity-info-box" wx:if="{{isResult == '0'}}">
+    <text class="l" decode="{{true}}">
+      <text style="color: red;">*</text>&nbsp;完善身份信息
+    </text>
+    <view class="r" bindtap="identityInfoForm">
+      <image src="/static/images/address_right.png"></image>
+    </view>
+  </view>
+  <!-- <view class="coupon-box">
+    <view class="coupon-item" bindtap="selectCoupon">
+      <view class="l" wx:if="{{couponId == 0}}">
+        <text class="name">没有可用的优惠券</text>
+        <text class="txt">0张</text>
+      </view>
+      <view class="l" wx:elif="{{couponId == -1}}">
+        <text class="name">优惠券</text>
+        <text class="txt">{{availableCouponLength}}张</text>
+      </view>
+      <view class="l" wx:else>
+        <text class="name">优惠券</text>
+        <text class="txt">-￥{{couponPrice}}元</text>
+      </view>      
+      <view class="r">
+        <image src="/static/images/address_right.png"></image>
+      </view>
+    </view>
+  </view> -->
+  <view class="overseas">
+      <view class="order-item" wx:for="{{splitMap}}" wx:key="id">
+    <view>
+      <view class="item_sections">
+        <!-- <image class="icon" src="/static/images/icon_select_none.png" bindtap="checkedItem" data-item-index="{{index}}"></image> -->
+        <!-- <image src="/static/images/address.png" style="width: 32rpx; height: 44rpx;margin-right:20rpx;"></image> -->
+        <text class="icon_title">{{item.title}}</text>
+      </view>
+      <view class="item-list" wx:for="{{item.list}}" wx:for-item="gitem" wx:key="id">
+        <!-- <image class="icon" src="/static/images/icon_select_none.png" bindtap="checkedItem" data-item-index="{{index}}"></image> -->
+        <view class="list_log">
+          <!-- <image src="/static/images/church.png"></image> -->
+          <image class="img" src="{{gitem.picUrl}}"></image>
+        </view>
+        <view class="info">
+          <view class="info_globle">
+            <text class="name">{{gitem.goodsName}}</text> </view>
+          <view class="info_grow"></view>
+          <view class="setting">
+            <view class="setting-left">
+              <text class="price fontMainColor">￥{{gitem.price}}</text>
+            </view>
+            <!-- <view class="setting-right">
+              <text class="minus"><text class="jianhao">-</text></text>
+              <input class="number" value="{{gitem.number}}"></input>
+              <text class="add"><text class="jiahao">＋</text></text>
+            </view> -->
+          </view>
+        </view>
+      </view>
+      <!-- <view class="item-list">
+        <image class="icon" src="/static/images/icon_select_none.png" bindtap="checkedItem" data-item-index="{{index}}"></image>
+        <view class="list_log">
+          <image src="/static/images/church.png"></image>
+        </view>
+        <view class="info">
+          <view class="info_globle">
+            <text class="name">旺旺小小酥 200g/袋</text> </view>
+          <view class="info_grow"></view>
+          <view class="setting">
+            <view class="setting-left">
+              <text class="price fontMainColor">￥7900.00</text>
+            </view>
+            <view class="setting-right">
+              <text class="minus"><text class="jianhao">-</text></text>
+              <input class="number" value="100"></input>
+              <text class="add"><text class="jiahao">＋</text></text>
+            </view>
+          </view>
+        </view>
+      </view> -->
+    </view>
+  </view>
+  </view>
+  <view class="order-box">
+    <view class="order-items">
+      <view class="l">
+        <text class="name" style="color:#1C2438;font-weight:800;font-size:32rpx">商品金额</text>
+      </view>
+      <view class="r">
+        <text class="txt fontMainColor" style="font-weight:600">￥{{goodsTotalPrice}}</text>
+      </view>
+    </view>
+    <!-- <view class="order-item">
+      <view class="l">
+        <text class="name">运费</text>
+      </view>
+      <view class="r">
+        <text class="txt">￥{{freightPrice}}元</text>
+      </view>
+    </view>
+    <view class="order-item no-border">
+      <view class="l">
+        <text class="name">优惠券</text>
+      </view>
+      <view class="r">
+        <text class="txt">-￥{{couponPrice}}元</text>
+      </view>
+    </view> -->
+  </view>
+  <view class="message-box">
+    <view class="messageTittle">订单备注</view>
+    <input class="message-item" bindinput="bindMessageInput" placeholder="请输入备注" value="{{message}}" />
+  </view>
+  
+  <view class="order-total">
+    <view class="l">总计：<text class="fontMainColor">￥{{actualPrice}}</text> </view>
+    <view class="r" bindtap="submitOrder" bindtouchstart="touchStart" bindtouchend="touchEnd">提交订单</view>
+  </view>
+
+  <view class="attr-pop-box" hidden="{{!openAttr}}">
+    <view class="attr-pop">
+      <view class="box-title">
+        <text class="button cancel" bindtap="boxChange" data-type="1" style="color: {{cancelColor}}">取消</text>
+        <text class="text">收货人信息</text>
+        <text class="button sure" bindtap="boxChange" data-type="2" style="color: {{sureColor}}">确定</text>
+        <!-- <text class="button sure" bindtap="boxChange" data-type="2" style="color:#ED3F14">确定</text> -->
+      </view>
+      <view class="box-form" wx:if="{{userType === '0'}}">
+        <view class="input">
+          <text class="input-title">收件人</text><input disabled placeholder="填写收件人信息" bindinput="bindConsignee" value="{{checkedAddress.name}}"></input>
+        </view>
+        <view class="input">
+          <text class="input-title teleMargin">联系电话</text><input disabled placeholder="填写收件人联系电话" bindinput="bindMobile" value="{{checkedAddress.tel}}"></input>
+        </view>
+      </view>
+      <view class="box-form" wx:else>
+      <view class="input">
+          <text class="input-title">收件人</text><input placeholder="填写收件人信息" bindinput="bindConsignee" value="{{consignee}}"></input>
+        </view>
+        <view class="input">
+          <text class="input-title teleMargin">联系电话</text><input placeholder="填写收件人联系电话" bindinput="bindMobile" value="{{mobile}}"></input>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="identity-pop-box" hidden="{{!openIdentity}}">
+  <!-- <view class="identity-pop-box"> -->
+    <view class="identity-pop">
+      <view class="box-title">
+        <text class="button cancel" bindtap="boxChange" data-type="1" style="color: {{cancelColor}}">取消</text>
+        <text class="text">身份认证</text>
+        <text class="button sure" bindtap="boxChange" data-type="2" style="color: {{sureColor}}">确定</text>
+        <!-- <text class="button sure" bindtap="boxChange" data-type="2" style="color:#ED3F14">确定</text> -->
+      </view>
+      <view class="box-form">
+        <!-- <view class="input">
+          <text class="input-title">姓名:</text>
+          <input placeholder="请输入姓名" bindinput="bindCarName" value="{{carName}}"/>
+        </view> -->
+        <view class="input">
+          <text class="input-title">身份证号:</text>
+          <input placeholder="请输入身份证号" bindinput="bindCarNumber" value="{{carNumber}}"/>
+        </view>
+        <!-- <view class="input">
+          <text class="input-title">证件正面:</text>
+          <view bindtap="uploadImgJust" class="uploadImg">
+            <image wx:if="{{imgUrlJust}}" src="{{imgUrlJust}}"></image>
+            <image wx:else src="/static/images/addIcon.png"></image>
+          </view>
+        </view> -->
+        <!-- <view class="input">
+          <text class="input-title">证件反面:</text>
+          <view bindtap="uploadImgBack" class="uploadImg">
+            <image wx:if="{{imgUrlBack}}" src="{{imgUrlBack}}"></image>
+            <image wx:else src="/static/images/addIcon.png"></image>
+          </view>
+        </view> -->
+      </view>
+    </view>
+  </view>
+</view>
